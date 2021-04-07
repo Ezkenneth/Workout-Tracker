@@ -8,7 +8,7 @@ const path = require('path')
 
 const PORT = process.env.PORT || 3000;
 
-const User = require("./models/models");
+const User = require("./models/model");
 const app = express();
 app.use(logger("dev"));
 
@@ -19,6 +19,20 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
+//HTML routes to target
+
+
+app.get("/", (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+})
+
+app.get("/exercise", (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'exercise.html'));
+})
+
+app.get('/stats', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'stats.html'))
+})
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
