@@ -1,0 +1,15 @@
+{
+    "name": "Workout Tracker Application",
+    "short_name": "Workout Tracker",
+    "icons": [
+        {
+            "src": "icons/icon1.png",
+            "sizes": "700x700",
+            "type": "image/png"
+         }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "start_url": "/",
+    "display": "standalone"
+}

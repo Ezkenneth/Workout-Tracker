@@ -19,6 +19,9 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
+// routes
+// app.use(require(".apis"));
+
 //HTML routes to target
 
 
@@ -34,7 +37,7 @@ app.get('/stats', (_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'stats.html'))
 })
 
-// API routes to targer
+// API routes to target
   
 
 app.get("/api/workouts", (_, res) => {
