@@ -3,15 +3,17 @@ const logger = require("morgan");
 const mongojs = require('mongojs')
 const mongoose = require("mongoose");
 const path = require('path')
-
+const compression = require("compression");
 
 
 const PORT = process.env.PORT || 3000;
 
-const User = require("./models/model");
+const Workout = require("./models/model");
 const app = express();
 app.use(logger("dev"));
 
+
+app.use(compression());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -48,7 +50,7 @@ app.get('/stats', (_req, res) => {
   
 
 app.get("/api/workouts", (_, res) => {
-  User.find()
+  Workout.find()
     .then(result => {
       res.json(result);
     })
@@ -58,7 +60,7 @@ app.get("/api/workouts", (_, res) => {
 });
 
 app.post("/api/workouts", (_, res) => {
-  User.create({})
+  Workout.create({})
     .then(result => {
       res.json(result);
     })
@@ -68,7 +70,7 @@ app.post("/api/workouts", (_, res) => {
 });
 
 app.put("/api/workouts/:id", ({body, params}, res) => {
-  User.findByIdAndUpdate(params.id, 
+  Workout.findByIdAndUpdate(params.id, 
     {$push:{exercises:body}}, 
     {new:true, runValidators: true})
     .then(result => {
@@ -81,7 +83,7 @@ app.put("/api/workouts/:id", ({body, params}, res) => {
 
 
 app.get('/api/workouts/range', (_, res) => {
-  User.find()
+  Workout.find()
     .then(result => {
       res.json(result);
     })
